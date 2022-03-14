@@ -1,5 +1,6 @@
 ﻿using H2MyBanker.Cards;
 using System;
+using System.Collections.Generic;
 
 namespace H2MyBanker
 {
@@ -9,21 +10,18 @@ namespace H2MyBanker
         {
             Random random = new Random();
 
-            Card maestro = new Maestro("Rasmus", "Maestro");
-            Card visaElectron = new VisaElectron("Daniel", "Visa Electron");
-            Card mastercard = new Mastercard("Benjamin", "Master card");
-            Card debitcard = new DebitCard("Mikkel", "Debit card");
-            Card visaDankort = new VisaDankort("Kris", "Visa Dankort");
+            List<Card> cards = new List<Card>();
+            cards.Add(new Maestro("Rasmus"));
+            cards.Add(new VisaElectron("Daniel"));
+            cards.Add(new Mastercard("Benjamin"));
+            cards.Add(new DebitCard("Mikkel"));
+            cards.Add(new Visa("Kris"));
 
-            Console.WriteLine(maestro.ToString());
-            Console.WriteLine("#############################\n");
-            Console.WriteLine(visaElectron.ToString());
-            Console.WriteLine("#############################\n");
-            Console.WriteLine(mastercard.ToString());
-            Console.WriteLine("#############################\n");
-            Console.WriteLine(debitcard.ToString());
-            Console.WriteLine("#############################\n");
-            Console.WriteLine(visaDankort.ToString());
+            foreach (Card card in cards)
+            {
+                Console.WriteLine(card.ToString());
+                Console.WriteLine("#############################\n");
+            }
         }
     }
 }

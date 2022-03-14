@@ -8,8 +8,9 @@ namespace H2MyBanker.Cards
     public class Maestro : Card, IExpiryDate
     {
         public DateTime ExpireDate { get; set; }
-        public Maestro(string cardOwner, string cardName) : base(cardOwner, cardName)
+        public Maestro(string cardOwner) : base(cardOwner)
         {
+            CardName = "Maestro";
             Prefix = new string[]
             {
                 "5018",

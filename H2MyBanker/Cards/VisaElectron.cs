@@ -15,8 +15,9 @@ namespace H2MyBanker.Cards
 
         Random random = new Random();
 
-        public VisaElectron(string cardOwner, string cardName) : base(cardOwner, cardName)
+        public VisaElectron(string cardOwner) : base(cardOwner)
         {
+            CardName = "Visa Electron";
             Prefix = new string[]
             {
                 "4026",

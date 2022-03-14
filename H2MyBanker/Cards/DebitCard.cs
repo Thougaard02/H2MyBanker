@@ -6,8 +6,9 @@ namespace H2MyBanker.Cards
 {
     public class DebitCard : Card
     {
-        public DebitCard(string cardOwner, string cardName) : base(cardOwner, cardName)
+        public DebitCard(string cardOwner) : base(cardOwner)
         {
+            CardName = "Debit card";
             Prefix = new string[]
             {
                 "2400",

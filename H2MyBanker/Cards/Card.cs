@@ -6,21 +6,20 @@ namespace H2MyBanker.Cards
 {
     public abstract class Card
     {
-        private int RegNumber = 3520;
-        readonly int Age;
-        Random Random = new Random();
-        public string CardOwner { get; protected set; }
+        private const int REG_NUMBER = 3520;
+        private const int ACCOUNT_NUMBER_LENGHT = 14;
+
+        private Random random = new Random();
+        public string HolderName { get; protected set; }
         public string CardName { get; protected set; }
         public string CardNumber { get; protected set; }
         public string[] Prefix { get; protected set; }
         public string AccountNumber { get; protected set; }
         public int CardNumberLenght { get; protected set; } = 16;
-        Random random = new Random();
 
-        public Card(string cardOwner, string cardName)
+        public Card(string cardOwner)
         {
-            CardOwner = cardOwner;
-            CardName = cardName;
+            HolderName = cardOwner;
         }
         private void GenerateCardNumber()
         {
@@ -29,14 +28,15 @@ namespace H2MyBanker.Cards
             int lenghtOfCardNumber = CardNumberLenght - CardNumber.Length;
             for (int i = 0; i < lenghtOfCardNumber; i++)
             {
-                CardNumber += Random.Next(0, 9);
+                CardNumber += random.Next(0, 9);
             }
             Console.WriteLine($"{CardNumber} has been generated");
         }
         private void GenerateAccountNumber()
         {
-            AccountNumber += RegNumber;
-            for (int i = 0; i < 10; i++)
+            AccountNumber += REG_NUMBER;
+            int lenght = ACCOUNT_NUMBER_LENGHT - AccountNumber.Length;
+            for (int i = 0; i < lenght; i++)
             {
                 AccountNumber += random.Next(0, 9);
             }
@@ -48,7 +48,7 @@ namespace H2MyBanker.Cards
             GenerateCardNumber();
             GenerateAccountNumber();
             Console.WriteLine();
-            return $"CardOwner: {CardOwner}\nCard name: {CardName}\nCardnumber: {CardNumber}\nAccountNumber: {AccountNumber}\nCardNumberLenght: {CardNumberLenght}";
+            return $"CardOwner: {HolderName}\nCard name: {CardName}\nCardnumber: {CardNumber}\nAccountNumber: {AccountNumber}\nCardNumberLenght: {CardNumberLenght}";
         }
     }
 }

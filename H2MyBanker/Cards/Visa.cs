@@ -5,13 +5,14 @@ using System.Text;
 
 namespace H2MyBanker.Cards
 {
-    public class VisaDankort : Card, IExpiryDate, IMonthlyLimit
+    public class Visa : Card, IExpiryDate, IMonthlyLimit
     {
         public DateTime ExpireDate { get; set; }
         public int MonthlyLimit { get; set; }
         Random random = new Random();
-        public VisaDankort(string cardOwner, string cardName) : base(cardOwner, cardName)
+        public Visa(string cardOwner) : base(cardOwner)
         {
+            CardName = "Visa";
             Prefix = new string[]
             {
                 "4"

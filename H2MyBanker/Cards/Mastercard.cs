@@ -13,8 +13,9 @@ namespace H2MyBanker.Cards
         public int MaxCredit { get; set; }
 
         Random random = new Random();
-        public Mastercard(string cardOwner, string cardName) : base(cardOwner, cardName)
+        public Mastercard(string cardOwner) : base(cardOwner)
         {
+            CardName = "Mastercard";
             Prefix = new string[]
             {
                 "51",
