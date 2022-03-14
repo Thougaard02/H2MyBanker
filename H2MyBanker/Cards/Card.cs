@@ -9,13 +9,13 @@ namespace H2MyBanker.Cards
         private int RegNumber = 3520;
         readonly int Age;
         Random Random = new Random();
-        public string CardOwner { get; set; }
-        public string CardName { get; set; }
-        public string CardNumber { get; set; }
-        public string[] Prefix { get; set; }
-        public string AccountNumber { get; set; }
-        public int Minimum { get; set; }
-        public int CardNumberLenght { get; set; } = 16;
+        public string CardOwner { get; protected set; }
+        public string CardName { get; protected set; }
+        public string CardNumber { get; protected set; }
+        public string[] Prefix { get; protected set; }
+        public string AccountNumber { get; protected set; }
+        public int CardNumberLenght { get; protected set; } = 16;
+        Random random = new Random();
 
         public Card(string cardOwner, string cardName)
         {
@@ -24,7 +24,7 @@ namespace H2MyBanker.Cards
         }
         private void GenerateCardNumber()
         {
-            CardNumber = Prefix[Random.Next(0, Prefix.Length)];
+            CardNumber = Prefix[random.Next(0, Prefix.Length)];
             Console.WriteLine($"{CardNumber} Prefix");
             int lenghtOfCardNumber = CardNumberLenght - CardNumber.Length;
             for (int i = 0; i < lenghtOfCardNumber; i++)
@@ -38,7 +38,7 @@ namespace H2MyBanker.Cards
             AccountNumber += RegNumber;
             for (int i = 0; i < 10; i++)
             {
-                AccountNumber += Random.Next(0, 9);
+                AccountNumber += random.Next(0, 9);
             }
             Console.WriteLine($"AccountNumber has been generated");
         }

@@ -5,11 +5,13 @@ using System.Text;
 
 namespace H2MyBanker.Cards
 {
-    public class Mastercard : Card, IExpiryDate, IDailyLimit, IMonthlyLimit
+    public class Mastercard : Card, IExpiryDate, IDailyLimit, IMonthlyLimit, IMaxCredit
     {
-        public DateTime ExprityDate { get; set; }
+        public DateTime ExpireDate { get; set; }
         public int DailyLimit { get; set; }
         public int MonthlyLimit { get; set; }
+        public int MaxCredit { get; set; }
+
         Random random = new Random();
         public Mastercard(string cardOwner, string cardName) : base(cardOwner, cardName)
         {
@@ -22,11 +24,14 @@ namespace H2MyBanker.Cards
                 "55",
 
             };
-            ExprityDate = DateTime.Now.AddYears(random.Next(1, 6));
+            MonthlyLimit = 30000;
+            DailyLimit = 5000;
+            MaxCredit = 40000;
+            ExpireDate = DateTime.Now.AddYears(random.Next(1, 6));
         }
         public override string ToString()
         {
-            return base.ToString() + "\n" + "Exprity date:" + ExprityDate;
+            return base.ToString() + $"\nMonthly limit: {MonthlyLimit}\nDaily Limit: {DailyLimit}\nMax credit: {MaxCredit}\nExprity date: {ExpireDate}";
         }
     }
 }

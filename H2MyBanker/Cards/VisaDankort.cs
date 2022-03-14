@@ -7,7 +7,7 @@ namespace H2MyBanker.Cards
 {
     public class VisaDankort : Card, IExpiryDate, IMonthlyLimit
     {
-        public DateTime ExprityDate { get; set; }
+        public DateTime ExpireDate { get; set; }
         public int MonthlyLimit { get; set; }
         Random random = new Random();
         public VisaDankort(string cardOwner, string cardName) : base(cardOwner, cardName)
@@ -16,12 +16,13 @@ namespace H2MyBanker.Cards
             {
                 "4"
             };
-            ExprityDate = DateTime.Now.AddYears(random.Next(1, 6));
+            ExpireDate = DateTime.Now.AddYears(random.Next(1, 6));
+            MonthlyLimit = 25000;
         }
 
         public override string ToString()
         {
-            return base.ToString() + "\n" + "Exprity date: " + ExprityDate;
+            return base.ToString() + $"\nMonthly limit: {MonthlyLimit}\nExprity date: {ExpireDate}";
         }
     }
 }

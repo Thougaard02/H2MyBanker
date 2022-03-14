@@ -4,8 +4,8 @@ using System.Text;
 
 namespace H2MyBanker.Interfaces
 {
-    interface IExpiryDate
+    interface IMaxCredit
     {
-        public DateTime ExpireDate { get; set; }
+        public int MaxCredit { get; set; }
     }
 }

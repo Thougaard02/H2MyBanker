@@ -7,8 +7,7 @@ namespace H2MyBanker.Cards
 {
     public class Maestro : Card, IExpiryDate
     {
-        public DateTime ExprityDate { get; set; }
-
+        public DateTime ExpireDate { get; set; }
         public Maestro(string cardOwner, string cardName) : base(cardOwner, cardName)
         {
             Prefix = new string[]
@@ -24,11 +23,11 @@ namespace H2MyBanker.Cards
                 "6763",
             };
             CardNumberLenght = 19;
-            ExprityDate = DateTime.Now.AddYears(5).AddMonths(8);
+            ExpireDate = DateTime.Now.AddYears(5).AddMonths(8);
         }
         public override string ToString()
         {
-            return base.ToString() + "\n" + "Exprity date:" + ExprityDate;
+            return base.ToString() + $"\nExprity date: {ExpireDate}";
         }
     }
 }
