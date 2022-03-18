@@ -4,8 +4,9 @@ using System.Text;
 
 namespace H2MyBanker.Interfaces
 {
-    interface IPayableOnline
+    public interface IAccount
     {
-        public bool IsPayableOnline { get; set; }
+        string GetRegistrationNumber();
+        string GetAccountNumber();
     }
 }

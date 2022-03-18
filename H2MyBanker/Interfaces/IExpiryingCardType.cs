@@ -4,7 +4,7 @@ using System.Text;
 
 namespace H2MyBanker.Interfaces
 {
-    public interface IExpiryDate
+    public interface IExpiryingCardType : ITransactionCardType
     {
         int GetExpiryMonth();
         int GetExpiryYear();

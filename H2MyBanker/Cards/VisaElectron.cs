@@ -5,37 +5,63 @@ using System.Text;
 
 namespace H2MyBanker.Cards
 {
-    public class VisaElectron : Card, IExpiryDate, IInternational, IPayableOnline, IMonthlyLimit, IMaxCredit
+    public class VISAElectron : ExtendedDebitCard
     {
-        public DateTime ExpireDate { get; set; }
-        public bool IsInternational { get; set; }
-        public bool IsPayableOnline { get; set; }
-        public int MonthlyLimit { get; set; }
-        public int MaxCredit { get; set; }
-
-        Random random = new Random();
-
-        public VisaElectron(string cardOwner) : base(cardOwner)
-        {
-            CardName = "Visa Electron";
-            Prefix = new string[]
-            {
+        private readonly string[] prefix = new string[]
+          {
                 "4026",
                 "417500",
                 "4508",
                 "4844",
                 "4913",
                 "4917",
-            };
-            MonthlyLimit = 10000;
-            MaxCredit = 20000;
-            IsInternational = true;
-            IsPayableOnline = true;
-            ExpireDate = DateTime.Now.AddYears(random.Next(1, 6));
-        }
-        public override string ToString()
+          };
+        public VISAElectron(ICardOwner cardOwner, IAccount account) : base(cardOwner, account)
         {
-            return base.ToString() + $"\nMonthly limit: {MonthlyLimit}\nMax credit: {MaxCredit}\nInternational: {IsInternational}\nPayableOnline: {IsPayableOnline}\nExprity date: {ExpireDate}";
+        }
+        public override string GenerateCardNumber()
+        {
+            string cardNum = prefix[ran.Next(0, prefix.Length)];
+            while (cardNum.Length < 16)
+            {
+                cardNum += ran.Next(0, 10);
+            }
+            return cardNum;
+        }
+
+        public override int GetAgeLimit()
+        {
+            return 15;
+        }
+
+        public override string GetCardName()
+        {
+            return "Maestro";
+        }
+
+        public override double GetCurrentSaldo()
+        {
+            return ran.Next(1, 20000);
+        }
+
+        public override int GetExpiryMonth()
+        {
+            return ran.Next(1, 13);
+        }
+
+        public override int GetExpiryYear()
+        {
+            return ran.Next(2022, 2027);
+        }
+
+        public override bool IsPayableInternational()
+        {
+            return true;
+        }
+
+        public override bool IsPayableOnline()
+        {
+            return true;
         }
     }
 }

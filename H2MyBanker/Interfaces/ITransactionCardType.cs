@@ -4,9 +4,8 @@ using System.Text;
 
 namespace H2MyBanker.Interfaces
 {
-    public interface IExpiryDate
+    public interface ITransactionCardType : ICardType
     {
-        int GetExpiryMonth();
-        int GetExpiryYear();
+        int GetAgeLimit();
     }
 }

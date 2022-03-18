@@ -5,14 +5,10 @@ using System.Text;
 
 namespace H2MyBanker.Cards
 {
-    public class Maestro : Card, IExpiryDate
+    public class Maestro : ExtendedDebitCard
     {
-        public DateTime ExpireDate { get; set; }
-        public Maestro(string cardOwner) : base(cardOwner)
-        {
-            CardName = "Maestro";
-            Prefix = new string[]
-            {
+        private readonly string[] prefix = new string[]
+          {
                 "5018",
                 "5020",
                 "5038",
@@ -22,13 +18,56 @@ namespace H2MyBanker.Cards
                 "6761",
                 "6762",
                 "6763",
-            };
-            CardNumberLenght = 19;
-            ExpireDate = DateTime.Now.AddYears(5).AddMonths(8);
-        }
-        public override string ToString()
+          };
+        public Maestro(ICardOwner cardOwner, IAccount account) 
+            : base(cardOwner, account)
         {
-            return base.ToString() + $"\nExprity date: {ExpireDate}";
         }
+
+        public override string GetCardName()
+        {
+            return "Maestro";
+        }
+
+        public override int GetAgeLimit()
+        {
+            return 18;
+        }
+
+        public override string GenerateCardNumber()
+        {
+            string cardNum = prefix[ran.Next(0, prefix.Length)];
+            while (cardNum.Length < 19)
+            {
+                cardNum += ran.Next(0, 10);
+            }
+            return cardNum;
+        }
+
+        public override double GetCurrentSaldo()
+        {
+            return ran.Next(0, 20000);
+        }
+
+        public override int GetExpiryMonth()
+        {
+            return ran.Next(1, 13);
+        }
+
+        public override int GetExpiryYear()
+        {
+            return ran.Next(2022, 2027);
+        }
+
+        public override bool IsPayableInternational()
+        {
+            return true;
+        }
+
+        public override bool IsPayableOnline()
+        {
+            return true;
+        }
+
     }
 }

@@ -1,30 +1,23 @@
 ﻿using H2MyBanker.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace H2MyBanker.Cards
 {
-    public class Mastercard : CreditCard
+    class VisaDankort : CreditCard
     {
-        private Random ran = new Random();
         private readonly string[] prefix = new string[]
           {
-                "51",
-                "52",
-                "53",
-                "54",
-                "55",
+                "4",
           };
-        public Mastercard(ICardOwner cardOwner, IAccount account) 
-            : base(cardOwner, account)
+        public VisaDankort(ICardOwner cardOwner, IAccount account) : base(cardOwner, account)
         {
         }
 
         public override string GetCardName()
         {
-            return "Mastercard";
+            return "Visa/Dankort";
         }
 
         public override int GetAgeLimit()
@@ -34,7 +27,6 @@ namespace H2MyBanker.Cards
 
         public override string GenerateCardNumber()
         {
-          
             string cardNum = prefix[ran.Next(0, prefix.Length)];
             while (cardNum.Length < 16)
             {
@@ -45,7 +37,7 @@ namespace H2MyBanker.Cards
 
         public override double GetCurrentSaldo()
         {
-            return ran.Next(2000, 20000);
+            return ran.Next(1000, 20000);
         }
 
         public override int GetExpiryMonth()
@@ -60,17 +52,17 @@ namespace H2MyBanker.Cards
 
         public override int GetCreditLimit()
         {
-            return 40000;
+            return 20000;
         }
 
         public override int GetMonthlyLimit()
         {
-            return 30000;
+            return 25000;
         }
 
         public override int GetDailyLimit()
         {
-            return 5000;
+            return 10000;
         }
     }
 }

@@ -4,8 +4,8 @@ using System.Text;
 
 namespace H2MyBanker.Interfaces
 {
-    interface IInternational
+    public interface IOnlineCardType
     {
-        public bool IsInternational { get; set; }
+        bool IsPayableOnline();
     }
 }

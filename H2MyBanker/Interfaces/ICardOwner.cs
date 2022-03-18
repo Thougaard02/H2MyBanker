@@ -4,8 +4,9 @@ using System.Text;
 
 namespace H2MyBanker.Interfaces
 {
-    interface IDailyLimit
+    public interface ICardOwner
     {
-        public int DailyLimit { get; set; }
+        string GetCardOwnerName();
+        int GetCardOwnerAge();
     }
 }

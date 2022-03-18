@@ -4,8 +4,8 @@ using System.Text;
 
 namespace H2MyBanker.Interfaces
 {
-    interface IMaxCredit
+    public interface IDebitCardType : ICardType
     {
-        public int MaxCredit { get; set; }
+        
     }
 }

@@ -4,8 +4,8 @@ using System.Text;
 
 namespace H2MyBanker.Interfaces
 {
-    interface IMonthlyLimit
+    public interface IInternationalCardType
     {
-        public int MonthlyLimit { get; set; }
+        bool IsPayableInternational();
     }
 }
