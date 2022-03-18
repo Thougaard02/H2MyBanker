@@ -23,17 +23,14 @@ namespace H2MyBanker.Cards
             : base(cardOwner, account)
         {
         }
-
         public override string GetCardName()
         {
             return "Maestro";
         }
-
         public override int GetAgeLimit()
         {
             return 18;
         }
-
         public override string GenerateCardNumber()
         {
             string cardNum = prefix[ran.Next(0, prefix.Length)];
@@ -43,31 +40,25 @@ namespace H2MyBanker.Cards
             }
             return cardNum;
         }
-
         public override double GetCurrentSaldo()
         {
             return ran.Next(0, 20000);
         }
-
         public override int GetExpiryMonth()
         {
             return ran.Next(1, 13);
         }
-
         public override int GetExpiryYear()
         {
             return ran.Next(2022, 2027);
         }
-
         public override bool IsPayableInternational()
         {
             return true;
         }
-
         public override bool IsPayableOnline()
         {
             return true;
         }
-
     }
 }
